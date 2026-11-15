@@ -4,7 +4,14 @@ Needs KiCad running with kipida_test_4l.kicad_pcb open in the PCB editor (one
 KiCad instance only), and a Python with Ki-PIDA's requirements installed (for
 example the Ki-PIDA development venv):
 
-    <KiPIDA>/.venv/Scripts/python.exe tools/validate_board.py <KiPIDA folder> [grid_mm ...]
+    <KiPIDA>/.venv/Scripts/python.exe tools/validate_board.py [KiPIDA folder] [grid_mm ...]
+
+As a submodule of Ki-PIDA (examples/pcb_kipida_tests) the Ki-PIDA folder is found
+by itself, so from the Ki-PIDA root:
+
+    .venv/Scripts/python.exe examples/pcb_kipida_tests/tools/validate_board.py [grid_mm ...]
+
+In a standalone checkout of this repo, give the Ki-PIDA folder first.
 
 Default grids: 0.1 and 0.025 mm. For each grid it prints one JSON line with the
 drop between the sense pads (mV) per structure, then a KIPIDA_RESULTS block for
@@ -18,10 +25,32 @@ import os
 import sys
 import time
 
-if len(sys.argv) < 2:
-    sys.exit(__doc__)
-sys.path.insert(0, os.path.abspath(sys.argv[1]))
-GRIDS = [float(g) for g in sys.argv[2:]] or [0.1, 0.025]
+def _is_kipida(folder):
+    return os.path.isdir(os.path.join(folder, "kipida"))
+
+
+def _parse_args(args):
+    """(Ki-PIDA folder, grids). The folder is optional when this repo sits inside Ki-PIDA."""
+    if args and not _is_number(args[0]):
+        folder, args = os.path.abspath(args[0]), args[1:]
+    else:
+        # tools/ -> pcb_kipida_tests/ -> examples/ -> Ki-PIDA root
+        folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+    if not _is_kipida(folder):
+        sys.exit(f"Ki-PIDA not found in {folder}\n{__doc__}")
+    return folder, [float(g) for g in args] or [0.1, 0.025]
+
+
+def _is_number(text):
+    try:
+        float(text)
+        return True
+    except ValueError:
+        return False
+
+
+KIPIDA_DIR, GRIDS = _parse_args(sys.argv[1:])
+sys.path.insert(0, KIPIDA_DIR)
 
 import kipy  # noqa: E402
 import numpy as np  # noqa: E402
