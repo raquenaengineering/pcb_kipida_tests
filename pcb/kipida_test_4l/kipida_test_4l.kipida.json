@@ -1,0 +1,366 @@
+{
+  "version": "1.0",
+  "rails": [
+    {
+      "net_name": "VAL_A1_W050",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J1",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J2",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_A2_W100",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J3",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J4",
+          "total_current": 2.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_A3_W200",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J5",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J6",
+          "total_current": 4.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_B1_NECK",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J7",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J8",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_C1_IN1",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J9",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J10",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_F1_BOTTOM",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J11",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J12",
+          "total_current": 2.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_F2_PLANE_UNDER",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J13",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J14",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_G1_BUS",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J15",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J16",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        },
+        {
+          "ref_des": "J17",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        },
+        {
+          "ref_des": "J18",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_D1_PLANE",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J19",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J20",
+          "total_current": 10.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_E1_VIA01",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J21",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J22",
+          "total_current": 5.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_E2_VIA04",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J23",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J24",
+          "total_current": 5.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_E3_VIA10",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J25",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J26",
+          "total_current": 5.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_H1_HEATER",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J27",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J28",
+          "total_current": 1.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    },
+    {
+      "net_name": "VAL_I1_12V",
+      "nominal_voltage": 12.0,
+      "sources": [
+        {
+          "ref_des": "J29",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [],
+      "child_regulators": [
+        {
+          "name": "U1 (VAL_I1_5V)",
+          "input_rail_name": "VAL_I1_12V",
+          "input_ref_des": "U1",
+          "input_pad_names": [
+            "1"
+          ],
+          "output_rail_name": "VAL_I1_5V",
+          "output_ref_des": "U1",
+          "output_pad_names": [
+            "2"
+          ],
+          "reg_type": "SWITCHING",
+          "efficiency": 0.9
+        }
+      ]
+    },
+    {
+      "net_name": "VAL_I1_5V",
+      "nominal_voltage": 5.0,
+      "sources": [],
+      "loads": [
+        {
+          "ref_des": "J30",
+          "total_current": 2.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
+    }
+  ]
+}
