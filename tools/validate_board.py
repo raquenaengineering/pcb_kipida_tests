@@ -67,8 +67,9 @@ PAIRS = {
     "H1": ("VAL_H1_HEATER", "J27", "J28"),
     "G1 L1": ("VAL_G1_BUS", "J15", "J16"), "G1 L2": ("VAL_G1_BUS", "J15", "J17"), "G1": ("VAL_G1_BUS", "J15", "J18"),
     "I1 12V": ("VAL_I1_12V", "J29", "J31"), "I1": ("VAL_I1_5V", "J32", "J30"),
+    "K1": ("VAL_K1_PTH", "J34", "J35"),
 }
-EXPECTED_FOOTPRINTS = 33
+EXPECTED_FOOTPRINTS = 37
 
 
 def run(board, rails, grid):

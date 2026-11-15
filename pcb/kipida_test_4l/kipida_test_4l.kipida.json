@@ -361,6 +361,29 @@
         }
       ],
       "child_regulators": []
+    },
+    {
+      "net_name": "VAL_K1_PTH",
+      "nominal_voltage": 5.0,
+      "sources": [
+        {
+          "ref_des": "J33",
+          "pad_names": [
+            "1"
+          ]
+        }
+      ],
+      "loads": [
+        {
+          "ref_des": "J36",
+          "total_current": 5.0,
+          "pad_names": [
+            "1"
+          ],
+          "distribution_mode": "UNIFORM"
+        }
+      ],
+      "child_regulators": []
     }
   ]
 }

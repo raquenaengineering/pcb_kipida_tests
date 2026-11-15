@@ -425,6 +425,19 @@
 		(uuid "4b28b19d-5499-55ac-a3b6-ecbe17f7685a")
 	)
 
+	(text "K1: Through-hole pad, F.Cu -> B.Cu"
+		(exclude_from_sim no)
+		(at 20.32 260.35 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "b8620828-f363-5ec6-b8db-1b3eab318792")
+	)
+
 	(symbol
 		(lib_id "kipida_test:Terminal")
 		(at 60.96 35.56 0)
@@ -4968,6 +4981,558 @@
 		(uuid "71338cab-a8e2-5bcf-a805-51b4c5a97f5c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 337.82 252.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(symbol
+		(lib_id "kipida_test:Terminal")
+		(at 60.96 266.7 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "fdda15cd-813f-50ee-aa21-c3e0fb0668ef")
+		(property "Reference" "J33"
+			(at 60.96 261.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SRC"
+			(at 60.96 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "kipida_test:Terminal_K1_src"
+			(at 60.96 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 60.96 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "K1 src terminal (pad 1 force, pad 2 sense)"
+			(at 60.96 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Imax" "5A"
+			(at 67.31 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bd9418d1-170f-52a4-a098-2cc4ec0d69a4")
+		)
+		(pin "2"
+			(uuid "bc29d892-4451-5827-b738-236263ec925a")
+		)
+		(instances
+			(project "kipida_test_4l"
+				(path "/828a0b3a-6868-4e1b-a76c-a47ea279edd4"
+					(reference "J33")
+					(unit 1)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 53.34 266.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "72e00d61-c72e-5158-8c40-b9743006b820")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 53.34 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 53.34 269.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0e0b3380-3ddd-54cd-a94e-f0f00c455f88")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 53.34 269.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(symbol
+		(lib_id "kipida_test:Terminal")
+		(at 132.08 266.7 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7579c9ff-33a7-5de8-a57f-0a2a098cfdb2")
+		(property "Reference" "J34"
+			(at 132.08 261.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "DUT"
+			(at 132.08 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "kipida_test:Terminal_K1_dut"
+			(at 132.08 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.08 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "K1 pad under test: pad 1 through-hole (1.0 mm drill, 2.0 mm pad); pad 2 F.Cu sense on the far side of the pad (no current)"
+			(at 132.08 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Imax" "5A"
+			(at 138.43 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "23bae29c-5ccd-5a70-9cd3-bed2832aab4e")
+		)
+		(pin "2"
+			(uuid "9fa6a8f5-425a-5a04-95b9-a3f064cad4da")
+		)
+		(instances
+			(project "kipida_test_4l"
+				(path "/828a0b3a-6868-4e1b-a76c-a47ea279edd4"
+					(reference "J34")
+					(unit 1)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 124.46 266.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4f2971c0-7e75-566b-baff-55a5a1947793")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 124.46 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 124.46 269.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bb82e575-63de-5f0f-b5b4-e1a732c72087")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 124.46 269.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(symbol
+		(lib_id "kipida_test:Terminal")
+		(at 203.2 266.7 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3e8ee936-ba70-5038-91ac-7c4c6f8937ec")
+		(property "Reference" "J35"
+			(at 203.2 261.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SENSE"
+			(at 203.2 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "kipida_test:Terminal_K1_sense"
+			(at 203.2 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 203.2 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "K1 B.Cu sense on the far side of the pad under test (no current)"
+			(at 203.2 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Imax" "0A"
+			(at 209.55 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "891b30d1-ae43-59a7-8470-3a3be1bb21a1")
+		)
+		(pin "2"
+			(uuid "692f178f-e160-5130-94a9-96d8bbc2c0cb")
+		)
+		(instances
+			(project "kipida_test_4l"
+				(path "/828a0b3a-6868-4e1b-a76c-a47ea279edd4"
+					(reference "J35")
+					(unit 1)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 195.58 266.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "775e8970-1ece-5487-885d-da1f7485aa95")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 195.58 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 195.58 269.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f14803dc-b871-573b-9a10-94ed91e5bff8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 195.58 269.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(symbol
+		(lib_id "kipida_test:Terminal")
+		(at 274.32 266.7 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7dcc0923-be17-54a2-951c-6e5e228d1d48")
+		(property "Reference" "J36"
+			(at 274.32 261.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LOAD"
+			(at 274.32 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "kipida_test:Terminal_K1_load"
+			(at 274.32 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 274.32 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "K1 load on a through-hole pad (current drawn from every layer of the pad)"
+			(at 274.32 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Imax" "5A"
+			(at 280.67 273.05 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3967ba03-a12f-561f-9ab9-8a0102b30242")
+		)
+		(pin "2"
+			(uuid "dd861964-52b0-532b-9864-dcc85476d3fd")
+		)
+		(instances
+			(project "kipida_test_4l"
+				(path "/828a0b3a-6868-4e1b-a76c-a47ea279edd4"
+					(reference "J36")
+					(unit 1)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 266.7 266.7 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f10f2e62-fdeb-5cd5-a73a-734880e5b21a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 266.7 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+
+	(global_label "VAL_K1_PTH"
+		(shape passive)
+		(at 266.7 269.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5f198bea-1e5b-580d-b355-c5ebc79dc22c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 266.7 269.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

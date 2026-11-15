@@ -50,6 +50,7 @@ Ki-PIDA columns: simulated drop between the same sense pads at mesh 0.1 mm and 0
 | E3 | `VAL_E3_VIA10` | F/B | 4 mm zone strips (F.Cu split by a 1.6 mm gap); 10 x 0.3 mm vias F->B, 6 mm on B.Cu, 10 vias B->F | 5 A | - | no closed form (1-D est. 7.81 mV) | 6.20 mV | 6.09 mV | - |
 | H1 | `VAL_H1_HEATER` | F | 0.2 mm track, 40 legs x 25 mm, pitch 0.6 mm, centre line 1026.4 mm, 78 corners | 1 A | 2.447 Ohm | **2.447 V** | 2.442 V | 2.445 V | -0.1 % |
 | I1 | `VAL_I1_12V / VAL_I1_5V` | F | 1 mm tracks, 50 mm between sense points on each side | 2 A | 24.00 mOhm | **48.00 mV** | 47.94 mV | 47.94 mV | -0.1 % |
+| K1 | `VAL_K1_PTH` | F/B | 2 mm pad, 1 mm drill; sense stubs on F.Cu and B.Cu at the far side of the pad (J34 pad 2 -> sense terminal pad 2) | 5 A | 0.34 mOhm | **1.70 mV** | 1.72 mV | 1.71 mV | +0.7 % |
 
 ### A1: F.Cu track 0.5 mm
 
@@ -142,6 +143,12 @@ Ki-PIDA columns: simulated drop between the same sense pads at mesh 0.1 mm and 0
 * **12 V side (regulator input):** switching, 90 % (as configured): I_in = 5 V x 2 A / (0.9 x 12 V) = 0.926 A -> **22.22 mV**; if set to LINEAR: I_in = 2 A -> 48.00 mV.
 * **Ki-PIDA (0.025 mm):** 5 V 47.94 mV (-0.1 %), 12 V 22.20 mV (-0.1 %).
 * **Notes:** Sense pads as in A
+
+### K1: Through-hole pad, F.Cu -> B.Cu
+
+* **Validates:** Through-hole pad barrel (pad drill, all layers), source/load on a through-hole pad
+* **Formula:** barrel: rho x 1.5512 mm / (pi x (1 x 0.025 - 0.025^2)) mm^2 = 0.340 mOhm
+* **Notes:** The sense stubs sit on the far side of the pad, where no current flows in the pad copper, so they read the two ends of the barrel. Real barrels: plating thickness varies (typ. 20-35 um), so expect +-25 % on a real board. The load sits on a through-hole pad too: if Ki-PIDA did not find it, the drop would be 0
 
 ## How to run the validation
 

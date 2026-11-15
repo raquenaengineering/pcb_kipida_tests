@@ -85,6 +85,7 @@ KIPIDA_RESULTS = {
     "H1": (2.44158, 2.44527),
     "G1": (71.269e-3, 71.309e-3), "G1 L1": (35.634e-3, 35.651e-3), "G1 L2": (59.391e-3, 59.424e-3),
     "I1": (47.940e-3, 47.944e-3), "I1 12V": (22.194e-3, 22.197e-3),
+    "K1": (1.7189e-3, 1.7135e-3),
 }
 
 
@@ -191,27 +192,39 @@ class Builder:
 
     # ---- parts -----------------------------------------------------------
     def _footprint(self, fpname, ref, value, x, y, side, pads, imax, description):
+        """pads: (number, dx, dy, w, h, net[, kind]); kind "SMD" (default, rectangle on the
+        footprint's side) or ("PTH", drill_mm) for a round plated through-hole pad (w = diameter)."""
         fp = pcbnew.FOOTPRINT(self.board)
         fp.SetFPIDAsString(f"{FP_LIB}:{fpname}")
         fp.SetReference(ref)
         fp.SetValue(value)
         fp.SetPosition(V(x, y))
         self.board.Add(fp)
-        for num, dx, dy, w, h, net in pads:
+        for num, dx, dy, w, h, net, *kind in pads:
+            kind = kind[0] if kind else "SMD"
             p = pcbnew.PAD(fp)
             p.SetNumber(num)
-            p.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
-            p.SetShape(pcbnew.PAD_SHAPE_RECTANGLE)
-            p.SetSize(V(w, h))
-            ls = pcbnew.LSET()
-            for layer in (pcbnew.F_Cu, pcbnew.F_Mask):
-                ls.AddLayer(layer)
-            p.SetLayerSet(ls)
+            if kind == "SMD":
+                p.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+                p.SetShape(pcbnew.PAD_SHAPE_RECTANGLE)
+                p.SetSize(V(w, h))
+                ls = pcbnew.LSET()
+                for layer in (pcbnew.F_Cu, pcbnew.F_Mask):
+                    ls.AddLayer(layer)
+                p.SetLayerSet(ls)
+            else:
+                _pth, drill = kind
+                p.SetAttribute(pcbnew.PAD_ATTRIB_PTH)
+                p.SetShape(pcbnew.PAD_SHAPE_CIRCLE)
+                p.SetSize(V(w, w))
+                p.SetDrillShape(pcbnew.PAD_DRILL_SHAPE_CIRCLE)
+                p.SetDrillSize(V(drill, drill))
+                p.SetLayerSet(pcbnew.PAD.PTHMask())   # all copper layers + both masks
             fp.Add(p)
             # Bottom parts are built on top and flipped top-bottom, which mirrors y
             p.SetFPRelativePosition(V(dx, -dy if side == "B" else dy))
             p.SetNet(self.net(net))
-        fp.Reference().SetFPRelativePosition(V(0, -(max(h for *_r, h, _n in pads) / 2 + 1.2)))
+        fp.Reference().SetFPRelativePosition(V(0, -(max(pad[4] for pad in pads) / 2 + 1.2)))
         fp.Reference().SetTextSize(V(0.8, 0.8))
         fp.Value().SetVisible(False)
         fp.SetField("Imax", imax)
@@ -226,12 +239,16 @@ class Builder:
         return sym
 
     def terminal(self, net, role, imax, x, y, sense_dx, sense_dy, side="F", force=(3.0, 4.0),
-                 group="", description=""):
-        """Two-pad terminal: pad 1 = force (current), pad 2 = small Kelvin sense pad."""
+                 group="", description="", force_drill=None):
+        """Two-pad terminal: pad 1 = force (current), pad 2 = small Kelvin sense pad.
+
+        force_drill: pad 1 becomes a round plated through-hole pad (diameter force[0]) with this drill.
+        """
         self._ref["J"] += 1
         ref = f"J{self._ref['J']}"
         fpname = f"Terminal_{group}_{role}"
-        pads = [("1", 0, 0, force[0], force[1], net), ("2", sense_dx, sense_dy, 0.8, 0.8, net)]
+        force_pad = ("1", 0, 0, force[0], force[1], net) + ((("PTH", force_drill),) if force_drill else ())
+        pads = [force_pad, ("2", sense_dx, sense_dy, 0.8, 0.8, net)]
         description = description or f"{group} {role} terminal (pad 1 force, pad 2 sense)"
         sym = self._footprint(fpname, ref, role.upper(), x, y, side, pads, imax, description)
         self.parts.append({"kind": "terminal", "ref": ref, "value": role.upper(), "fp": fpname,
@@ -521,6 +538,45 @@ def build(b):
                        reg=dict(i_lin=cur, i_sw=i_in_sw, d12_lin=RS_OUT * sq * cur, d12_sw=RS_OUT * sq * i_in_sw),
                        validates="Power-tree current propagation (linear and switching)",
                        issue="Sense pads as in A"))
+
+    # K: plated through-hole pad, F.Cu -> barrel -> B.Cu, sensed at both ends of the barrel
+    net, y, cur, w = "VAL_K1_PTH", 120.0, 5.0, 2.0
+    pth_pad, pth_drill = 2.0, 1.0
+    x_src = RX + 6.0                    # clear of the last G1 load pad (x <= 115)
+    x_dut, x_load = x_src + 10.0, x_src + 20.0
+    tap = 2.5                           # sense stubs: from the pad centre to the far side, away from the current
+    b.silk("K1  through-hole pad F.Cu -> B.Cu, 5 A", x_src - 1.5, y - 5.0)
+    src_ref = b.terminal(net, "src", "5A", x_src, y, 3.0, -sense_offset(w), "F", group="K1")
+    dut_ref = b.terminal(net, "dut", "5A", x_dut, y, tap, 0.0, "F", force=(pth_pad, pth_pad), force_drill=pth_drill,
+                         group="K1", description="K1 pad under test: pad 1 through-hole (1.0 mm drill, 2.0 mm pad); "
+                                                 "pad 2 F.Cu sense on the far side of the pad (no current)")
+    b.terminal(net, "sense", "0A", x_dut - tap, y + 3.5, 0.0, -3.5, "B", force=(1.5, 1.5), group="K1",
+               description="K1 B.Cu sense on the far side of the pad under test (no current)")
+    load_ref = b.terminal(net, "load", "5A", x_load, y, -3.0, sense_offset(w), "B", force=(2.5, 2.5),
+                          force_drill=pth_drill, group="K1",
+                          description="K1 load on a through-hole pad (current drawn from every layer of the pad)")
+    b.track(net, "F", [(x_src, y), (x_dut, y)], w)              # current in on F.Cu ...
+    b.track(net, "B", [(x_dut, y), (x_load, y)], w)             # ... out on B.Cu
+    b.track(net, "F", [(x_dut, y), (x_dut + tap, y)], 0.3)      # F.Cu sense stub (+x, current comes from -x)
+    b.track(net, "B", [(x_dut, y), (x_dut - tap, y)], 0.3)      # B.Cu sense stub (-x, current leaves to +x)
+    b.track(net, "B", [(x_dut - tap, y), (x_dut - tap, y + 3.5)], 0.3)  # to the sense terminal's dummy pad
+    rail = b.rail(net, TEST_V)
+    rail["sources"].append({"ref_des": src_ref, "pad_names": ["1"]})
+    rail["loads"].append({"ref_des": load_ref, "total_current": cur, "pad_names": ["1"],
+                          "distribution_mode": "UNIFORM"})
+    area = math.pi * (pth_drill * PLATING - PLATING ** 2)
+    r = RHO * H_F_TO_B / area
+    b.spec.append(dict(id="K1", net=net, layer="F/B", title="Through-hole pad, F.Cu -> B.Cu", current=cur,
+                       geometry=f"{pth_pad:g} mm pad, {pth_drill:g} mm drill; sense stubs on F.Cu and B.Cu at the far "
+                                f"side of the pad ({dut_ref} pad 2 -> sense terminal pad 2)",
+                       formula=f"barrel: rho x {H_F_TO_B:.4f} mm / (pi x ({pth_drill:g} x {PLATING:g} - "
+                               f"{PLATING:g}^2)) mm^2 = {r * 1e3:.3f} mOhm",
+                       r=r, drop=r * cur,
+                       validates="Through-hole pad barrel (pad drill, all layers), source/load on a through-hole pad",
+                       issue="The sense stubs sit on the far side of the pad, where no current flows in the pad "
+                             "copper, so they read the two ends of the barrel. Real barrels: plating thickness "
+                             "varies (typ. 20-35 um), so expect +-25 % on a real board. The load sits on a "
+                             "through-hole pad too: if Ki-PIDA did not find it, the drop would be 0"))
 
     # Board outline
     edge = pcbnew.PCB_SHAPE(b.board)
